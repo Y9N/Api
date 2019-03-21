@@ -60,6 +60,6 @@ class ApiController extends Controller
             'code'=>'0',
             'msg'=>'ok'
         ];
-        echo json_encode($data);
+        echo json_encode($_POST);
     }
 }
