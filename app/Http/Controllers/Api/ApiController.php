@@ -56,10 +56,32 @@ class ApiController extends Controller
 
     public function api()
     {
-        $data=[
-            'code'=>'0',
-            'msg'=>'ok'
-        ];
-        echo json_encode($_POST);
+        $name=$_POST['name'];
+        $pwd=md5($_POST['pwd']);
+        $info=UserModel::where('name',$name)->first();
+        //print_r($info);die;
+        if(!$info){
+            $code=[
+                'error'=>'10000',
+                'msg'=>'Wrong account or password!'
+            ];
+            echo json_encode($code);die;
+        }else{
+            if($pwd!=$info['password']){
+                $code=[
+                    'error'=>'10000',
+                    'msg'=>'Wrong account or password!'
+                ];
+                echo json_encode($code);die;
+            }else{
+                $token = substr(md5(time().mt_rand(1,99999)),10,10);
+                $code=[
+                    'error'=>'0',
+                    'msg'=>'ok',
+                    'token'=>$token
+                ];
+                echo json_encode($code);
+            }
+        }
     }
 }
