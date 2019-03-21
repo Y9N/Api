@@ -56,6 +56,11 @@ class ApiController extends Controller
 
     public function api()
     {
-        echo 111;
+
+        $data=[
+            'code'=>'0',
+            'msg'=>'ok'
+        ];
+        echo json_encode($data);
     }
 }
