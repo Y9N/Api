@@ -57,6 +57,7 @@ class ApiController extends Controller
     public function api()
     {
         $name=$_POST['name'];
+        $type=$_POST['type'];
         $pwd=md5($_POST['pwd']);
         $info=UserModel::where('name',$name)->first();
         //print_r($info);die;
@@ -77,6 +78,7 @@ class ApiController extends Controller
                 $token = substr(md5(time().mt_rand(1,99999)),10,10);
                 $uid=$info['id'];
                 Redis::set("token:uid:$uid",$token);
+                Redis::del();
                 $code=[
                     'error'=>'0',
                     'msg'=>'ok',
