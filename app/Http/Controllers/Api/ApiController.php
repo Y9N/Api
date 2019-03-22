@@ -77,8 +77,13 @@ class ApiController extends Controller
             }else{
                 $token = substr(md5(time().mt_rand(1,99999)),10,10);
                 $uid=$info['id'];
-                Redis::set("token:uid:$uid",$token);
-                Redis::del();
+                if($type==1){
+                    Redis::set("token:one:$uid", $token);
+                    Redis::del("token:two:$uid");
+                }elseif($type==2){
+                    Redis::set("token:two:$uid", $token);
+                    Redis::del("token:noe:$uid");
+                }
                 $code=[
                     'error'=>'0',
                     'msg'=>'ok',
