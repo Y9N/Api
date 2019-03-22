@@ -79,10 +79,10 @@ class ApiController extends Controller
                 $uid=$info['id'];
                 if($type==1){
                     Redis::set("token:one:$uid", $token);
-                    Redis::del("token:two:$uid");
+                    Redis::delete("token:two:$uid");
                 }elseif($type==2){
                     Redis::set("token:two:$uid", $token);
-                    Redis::del("token:noe:$uid");
+                    Redis::delete("token:noe:$uid");
                 }
                 $code=[
                     'error'=>'0',
