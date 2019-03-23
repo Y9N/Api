@@ -49,7 +49,7 @@ class ApiController extends Controller
                     'code'=>10,
                     'msg'=>'Wrong account or password!'
                 ];
-                echo json_encode($data);
+                return $data;
             }
         }
     }
@@ -65,14 +65,12 @@ class ApiController extends Controller
                 'error'=>'10000',
                 'msg'=>'Wrong account or password!'
             ];
-            echo json_encode($code);die;
         }else{
             if($pwd!=$info['password']){
                 $code=[
                     'error'=>'10000',
                     'msg'=>'Wrong account or password!'
                 ];
-                echo json_encode($code);die;
             }else{
                 $token = substr(md5(time().mt_rand(1,99999)),10,10);
                 $uid=$info['id'];
@@ -83,8 +81,8 @@ class ApiController extends Controller
                     'msg'=>'ok',
                     'token'=>$token
                 ];
-                echo json_encode($code);
             }
         }
+        return $code;
     }
 }
