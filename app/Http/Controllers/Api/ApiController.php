@@ -53,7 +53,7 @@ class ApiController extends Controller
             }
         }
     }
-
+    //登录验证
     public function api()
     {
         $name=$_POST['name'];
@@ -86,5 +86,17 @@ class ApiController extends Controller
             }
         }
         return $code;
+    }
+    //用户中心验证
+    public function token()
+    {
+        $uid=$_POST['uid'];
+        $oldtoken=$_POST['token'];
+        $newtoken=Redis::get("token:one:$uid");
+        if($oldtoken==$newtoken){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }

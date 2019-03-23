@@ -19,3 +19,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/apitest', 'Api\ApiController@apitest');
 Route::any('/login', 'Api\ApiController@login');
 Route::post('/api', 'Api\ApiController@api');
+Route::post('/token', 'Api\ApiController@token');
