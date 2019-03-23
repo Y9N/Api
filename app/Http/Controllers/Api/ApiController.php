@@ -79,7 +79,9 @@ class ApiController extends Controller
                 $code=[
                     'error'=>'0',
                     'msg'=>'ok',
-                    'token'=>$token
+                    'token'=>$token,
+                    'uid'=>$uid,
+                    'name'=>$info['name']
                 ];
             }
         }
