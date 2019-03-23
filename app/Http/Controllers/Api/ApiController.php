@@ -99,4 +99,11 @@ class ApiController extends Controller
             return 0;
         }
     }
+
+    public function quit()
+    {
+        $uid=$_POST['uid'];
+        $newtoken=Redis::del("token:one:$uid");
+        var_dump($newtoken);
+    }
 }
