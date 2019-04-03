@@ -76,6 +76,7 @@ class ApiController extends Controller
                 $uid=$info['id'];
                 Redis::del("token:one:$uid");
                 Redis::set("token:one:$uid", $token);
+                Redis::expire("token:one:$uid",10);
                 $code=[
                     'error'=>'0',
                     'msg'=>'ok',
@@ -105,5 +106,11 @@ class ApiController extends Controller
         $uid=$_POST['uid'];
         $newtoken=Redis::del("token:one:$uid");
         return $newtoken;
+    }
+
+    public function autoquit()
+    {
+        $uid=$_POST['uid'];
+        Redis::expire("token:one:$uid",10);
     }
 }

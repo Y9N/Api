@@ -21,3 +21,4 @@ Route::any('/login', 'Api\ApiController@login');
 Route::post('/api', 'Api\ApiController@api');
 Route::post('/token', 'Api\ApiController@token');
 Route::post('/quit', 'Api\ApiController@quit');
+Route::post('/autoquit', 'Api\ApiController@autoquit');
