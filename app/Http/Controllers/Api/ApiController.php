@@ -111,6 +111,7 @@ class ApiController extends Controller
     public function autoquit()
     {
         $uid=$_POST['uid'];
-        Redis::expire("token:one:$uid",10);
+        $rs=Redis::expire("token:one:$uid",10);
+        var_dump($rs);
     }
 }
