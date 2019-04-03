@@ -57,7 +57,7 @@ class ApiController extends Controller
     public function api()
     {
         $name=$_POST['name'];
-        $pwd=$_POST['pwd'];
+        $pwd=md5($_POST['pwd']);
         $info=UserModel::where('name',$name)->first();
         //print_r($info);die;
         if(!$info){
