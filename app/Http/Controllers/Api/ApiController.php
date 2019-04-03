@@ -112,6 +112,10 @@ class ApiController extends Controller
     {
         $uid=$_POST['uid'];
         $rs=Redis::expire("token:one:$uid",10);
-        var_dump($rs);
+        if($rs){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
